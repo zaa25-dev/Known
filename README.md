@@ -8,7 +8,7 @@ Table of Contents
 
 
 Overview
-
+---------
 
 Description
 
@@ -33,31 +33,15 @@ Known answers:
 App Evaluation
 
 
-
 Category: Personal Analytics / Mapping / Lifestyle / Gamification
-
-
-
 
 Mobile: Uniquely mobile experience utilizing five distinct hardware and platform capabilities: continuous GPS Location tracking for route and territory generation, Maps for rendering familiarity heatmaps and progression layers, Accelerometer & Gyroscope Sensors for visit detection and movement classification, Compass (Magnetometer) data for directional travel analysis, and Camera integration for attaching memories and discoveries to significant locations.
 
-
-
-
 Story: Traditional mapping platforms understand geography but not personal significance. Modern navigation apps can identify where a place exists but cannot determine which places define a user's routine, lifestyle, or experiences. Known creates a dynamic personal atlas that reveals familiar territories, significant locations, overlooked regions, and life patterns automatically generated from sensor data.
-
-
-
 
 Market: College students, travelers, self-tracking enthusiasts, geography and map hobbyists, walkers, cyclists, runners, commuters, and users interested in understanding their movement patterns and personal geography.
 
-
-
-
 Habit: Known continuously generates personalized content based on user activity. Discovery cards, ghost locations, exploration milestones, route progression, territory completion percentages, and daily insights create an infinite feedback loop where users regularly return to see what new patterns and discoveries their world map has uncovered.
-
-
-
 
 Scope: The core technical scope centers on GPS route collection, significant-location clustering, familiarity scoring, territory generation, route recognition, movement analytics, and heatmap visualization. The MVP can be built around route tracking, personal map generation, discovery feeds, and progression systems while reserving advanced analytics and social features for future milestones.
 
@@ -235,6 +219,10 @@ Examples:
 This creates an infinite stream of personalized discoveries where users continuously return to answer a single question:
 
 "What did my map learn about me today?"
+
+
+
+---
 
 
 
