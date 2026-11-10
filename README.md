@@ -249,9 +249,9 @@ GitHub Project board
 
 Issue cards
 
-[Add screenshot of your Project Board with the issues that you've been working on for this unit's milestone] 
+<img width="401" height="631" alt="image" src="https://github.com/user-attachments/assets/93b22813-62ba-42cd-9ecc-f44bff1137a4" />
 
-[Add screenshot of your Project Board with the issues that you're working on in the NEXT sprint. It should include issues for next unit with assigned owners.] 
+<img width="392" height="456" alt="image" src="https://github.com/user-attachments/assets/ddd4ceb8-51cf-4040-bebb-0068330d1927" />
 
 Issues worked on this sprint
 
