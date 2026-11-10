@@ -1,6 +1,12 @@
 plugins {
     alias(libs.plugins.android.application)
+    id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
+
+
+
 }
+
+
 
 android {
     namespace = "com.example.known"
@@ -39,9 +45,10 @@ dependencies {
     implementation(libs.material)
 
     // Google Maps SDK for Android
-    implementation("com.google.android.gms:play-services-maps:18.2.0")
+    implementation(libs.play.services.maps)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(libs.androidx.junit)
+    implementation(libs.play.services.maps.v1700)
 }
