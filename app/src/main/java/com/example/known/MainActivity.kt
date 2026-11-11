@@ -33,6 +33,11 @@ class MainActivity : AppCompatActivity() {
 
         bottomNav.setOnItemSelectedListener { item ->
             when (item.itemId) {
+                R.id.feed -> {
+                    loadFragment(FeedFragment())
+                    true
+                }
+
                 R.id.map -> {
                     loadFragment(MapFragment())
                     true
