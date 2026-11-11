@@ -290,6 +290,7 @@ Screen 1: World Map View
 [ ] Floating action button to toggle hexagonal mesh visibility on/off
 
 Screen 2: Discovery Feed
+
 [ ] Top metric banner displaying Cartographer Level and weekly XP counter
 
 [ ] Scrollable vertical feed with insight cards
@@ -303,6 +304,7 @@ Screen 2: Discovery Feed
 [ ] Card action to highlight and navigate to the selected coordinate on the Map tab
 
 Screen 3: Cartographer Profile
+
 [ ] Header Level Card with Cartographer Rank badge and visual XP progress bar
 
 [ ] 2x2 Territory Stats Dashboard
@@ -316,17 +318,6 @@ Screen 3: Cartographer Profile
 [ ] Ghost Spots Conquered counter
 
 [ ] Saved Places & Bookmarks list with custom labels, visit counts, notes, and edit/delete controls
-
-Modal Sheet: Place Detail View
-[ ] Bottom sheet slide-up trigger from map pin or tile tap with dismiss drag handle
-
-[ ] Reverse-geocoded place title (street/neighborhood) and coordinate subtitle
-
-[ ] Familiarity status pill (Familiar, Frequent Hub, or Ghost Location)
-
-[ ] Location stats row displaying total visit count and aggregate dwell time
-
-[ ] Editable text field for saving custom user notes and labels
 
 Persistent System Shell
 [x] Fixed 3-tab Bottom Navigation Bar (Map, Feed, Profile)
