@@ -265,7 +265,7 @@ List the issues you completed this sprint
 
 [Add giphy that shows current build progress for Milestone 2. Note: We will be looking for progression of work between Milestone 2 and 3. Make sure your giphys are not duplicated and clearly show the change from Sprint 1 to 2.]
 
-<img width="540" height="700" alt="Milestone2" src="https://github.com/user-attachments/assets/10337409-5ecc-40bb-bcab-79d2fc307d6a" />
+<img width="400" height="800" alt="Milestone2" src="https://github.com/user-attachments/assets/10337409-5ecc-40bb-bcab-79d2fc307d6a" />
 
 
 
