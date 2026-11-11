@@ -255,9 +255,18 @@ Issue cards
 
 Issues worked on this sprint
 
+<img width="1494" height="1241" alt="image" src="https://github.com/user-attachments/assets/f1c9170a-43d2-4f64-84d7-497b32cbcf1c" />
+
+
 List the issues you completed this sprint
+- Added Google Map that will be used.
+- Added the three Fragments: Map, Feed, Profile
+- More development will happen by the next Milestone
 
 [Add giphy that shows current build progress for Milestone 2. Note: We will be looking for progression of work between Milestone 2 and 3. Make sure your giphys are not duplicated and clearly show the change from Sprint 1 to 2.]
+
+<img width="540" height="1200" alt="Milestone2" src="https://github.com/user-attachments/assets/10337409-5ecc-40bb-bcab-79d2fc307d6a" />
+
 
 
 ---
