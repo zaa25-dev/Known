@@ -267,6 +267,72 @@ List the issues you completed this sprint
 
 <img width="400" height="800" alt="Milestone2" src="https://github.com/user-attachments/assets/10337409-5ecc-40bb-bcab-79d2fc307d6a" />
 
+User Stories: 
+
+Screen 1: World Map View
+
+[x] Interactive Base Map Canvas with pan, pinch-to-zoom, and tilt gestures
+
+[ ] Uber H3 Hexagonal Territory Mesh
+
+[ ] Dim / translucent hexes for areas visited 1–2 times
+
+[ ] Solid colored hexes for high-frequency familiar territory
+
+[ ] Dotted / outlined hexes ("Ghost Locations") for unvisited bordering cells
+
+[ ] Pulsating blue location puck with directional heading cone
+
+[ ] Color-coded polyline route trails categorized by movement type (e.g., walking, driving)
+
+[ ] Floating action button to re-center camera on live GPS coordinates
+
+[ ] Floating action button to toggle hexagonal mesh visibility on/off
+
+Screen 2: Discovery Feed
+[ ] Top metric banner displaying Cartographer Level and weekly XP counter
+
+[ ] Scrollable vertical feed with insight cards
+
+[ ] Ghost Location Card (mini-map preview, distance, XP reward tag)
+
+[ ] Routine Divergence Card (divergence stats and habit callouts)
+
+[ ] Territory Expansion Card (celebratory banner for newly unlocked hexes)
+
+[ ] Card action to highlight and navigate to the selected coordinate on the Map tab
+
+Screen 3: Cartographer Profile
+[ ] Header Level Card with Cartographer Rank badge and visual XP progress bar
+
+[ ] 2x2 Territory Stats Dashboard
+
+[ ] Territory Known percentage
+
+[ ] Hexes Claimed counter
+
+[ ] Miles Logged counter
+
+[ ] Ghost Spots Conquered counter
+
+[ ] Saved Places & Bookmarks list with custom labels, visit counts, notes, and edit/delete controls
+
+Modal Sheet: Place Detail View
+[ ] Bottom sheet slide-up trigger from map pin or tile tap with dismiss drag handle
+
+[ ] Reverse-geocoded place title (street/neighborhood) and coordinate subtitle
+
+[ ] Familiarity status pill (Familiar, Frequent Hub, or Ghost Location)
+
+[ ] Location stats row displaying total visit count and aggregate dwell time
+
+[ ] Editable text field for saving custom user notes and labels
+
+Persistent System Shell
+[x] Fixed 3-tab Bottom Navigation Bar (Map, Feed, Profile)
+
+[ ] Android status bar persistent foreground notification for background tracking status
+
 
 
 ---
