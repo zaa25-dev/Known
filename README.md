@@ -169,62 +169,61 @@ List the issues you completed this sprint
 
 <img width="400" height="800" alt="Milestone2" src="https://github.com/user-attachments/assets/10337409-5ecc-40bb-bcab-79d2fc307d6a" />
 
-User Stories: 
+### User Stories
 
-Screen 1: World Map View
+#### Screen 1: World Map View
 
-[x] Interactive Base Map Canvas with pan, pinch-to-zoom, and tilt gestures
+* [x] Interactive Base Map Canvas with pan, pinch-to-zoom, and tilt gestures
+* [ ] Uber H3 Hexagonal Territory Mesh
+* [ ] Dim / translucent hexes for newly explored roads (visited 1–2 times)
+* [ ] Solid colored hexes for high-frequency daily commute corridors
+* [ ] Dotted / outlined hexes ("Ghost Locations") for unvisited streets bordering regular routes
+* [ ] Gold / highlighted hexes for unclaimed "High-Value" bonus zones
 
-[ ] Uber H3 Hexagonal Territory Mesh
 
-[ ] Dim / translucent hexes for areas visited 1–2 times
+* [ ] Pulsating blue vehicle location puck with directional heading cone
+* [ ] Color-coded polyline route trails distinguishing standard commute roads from newly discovered detours
+* [ ] Floating action button to re-center camera on live GPS coordinates
+* [ ] Floating action button to toggle hexagonal mesh visibility on/off
 
-[ ] Solid colored hexes for high-frequency familiar territory
+#### Screen 2: Discovery Feed & Leaderboard
 
-[ ] Dotted / outlined hexes ("Ghost Locations") for unvisited bordering cells
+* [ ] Top metric banner displaying Driver Level, weekly points counter, and current Leaderboard Rank
+* [ ] Local Leaderboard view ranking drivers by distance points, route-novelty bonuses, and high-value zone claims
+* [ ] Scrollable vertical feed with driving insight and challenge cards
+* [ ] High-Value Zone Card (mini-map preview, distance, bonus point payout)
+* [ ] Ghost Location Card (nearby unvisited road alert with distance and reward tag)
+* [ ] Routine Divergence Card (commute habit callouts, e.g., exits or roads passed without taking)
+* [ ] Territory Expansion Card (celebratory banner for newly unlocked roads and detour multipliers)
 
-[ ] Pulsating blue location puck with directional heading cone
 
-[ ] Color-coded polyline route trails categorized by movement type (e.g., walking, driving)
+* [ ] Card action to highlight and navigate to the selected coordinate on the Map tab
 
-[ ] Floating action button to re-center camera on live GPS coordinates
+#### Screen 3: Driver Profile
 
-[ ] Floating action button to toggle hexagonal mesh visibility on/off
+* [ ] Header Level Card with Driver Rank badge, leaderboard standing, and visual points progress bar
+* [ ] 2x2 Territory Stats Dashboard
+* [ ] Road Network Known percentage
+* [ ] Hexes Unlocked counter
+* [ ] Miles Driven counter
+* [ ] High-Value Zones Claimed counter
 
-Screen 2: Discovery Feed
 
-[ ] Top metric banner displaying Cartographer Level and weekly XP counter
+* [ ] Saved Places & Bookmarks list with custom labels, visit counts, notes, and edit/delete controls
 
-[ ] Scrollable vertical feed with insight cards
+#### Modal Sheet: Location / Hex Detail View
 
-[ ] Ghost Location Card (mini-map preview, distance, XP reward tag)
+* [ ] Bottom sheet slide-up trigger from map pin or hex tile tap with dismiss drag handle
+* [ ] Reverse-geocoded street or neighborhood title and coordinate subtitle
+* [ ] Familiarity & zone status pill (New Road, Daily Commute, Ghost Location, or High-Value Zone)
+* [ ] Location stats row displaying total visit count, dwell time, and point value
+* [ ] Editable text field for saving custom notes and labels
 
-[ ] Routine Divergence Card (divergence stats and habit callouts)
+#### Persistent System Shell & Scoring Engine
 
-[ ] Territory Expansion Card (celebratory banner for newly unlocked hexes)
-
-[ ] Card action to highlight and navigate to the selected coordinate on the Map tab
-
-Screen 3: Cartographer Profile
-
-[ ] Header Level Card with Cartographer Rank badge and visual XP progress bar
-
-[ ] 2x2 Territory Stats Dashboard
-
-[ ] Territory Known percentage
-
-[ ] Hexes Claimed counter
-
-[ ] Miles Logged counter
-
-[ ] Ghost Spots Conquered counter
-
-[ ] Saved Places & Bookmarks list with custom labels, visit counts, notes, and edit/delete controls
-
-Persistent System Shell
-[x] Fixed 3-tab Bottom Navigation Bar (Map, Feed, Profile)
-
-[ ] Android status bar persistent foreground notification for background tracking status
+* [x] Fixed 3-tab Bottom Navigation Bar (Map, Feed, Profile)
+* [ ] Android status bar persistent foreground notification for active background drive tracking
+* [ ] Point scoring & multiplier logic (base distance points, off-commute detour bonuses, and high-value zone claims)
 
 
 
