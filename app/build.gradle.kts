@@ -51,4 +51,6 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(libs.androidx.junit)
     implementation(libs.play.services.maps.v1700)
+    implementation(libs.play.services.location)
+    implementation(libs.androidx.cardview)
 }

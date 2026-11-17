@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
         bottomNav = findViewById(R.id.bottomNav)
 
         if (savedInstanceState == null) {
-            loadFragment(MapFragment())
+            loadFragment(FeedFragment())
         }
 
         bottomNav.setOnItemSelectedListener { item ->
