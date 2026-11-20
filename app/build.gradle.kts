@@ -37,6 +37,8 @@ android {
     }
 }
 
+
+
 dependencies {
     implementation(libs.androidx.activity.ktx)
     implementation(libs.androidx.appcompat)
@@ -53,4 +55,7 @@ dependencies {
     implementation(libs.play.services.maps.v1700)
     implementation(libs.play.services.location)
     implementation(libs.androidx.cardview)
+
+    implementation(libs.androidx.room.runtime)
+    annotationProcessor(libs.androidx.room.compiler)
 }
