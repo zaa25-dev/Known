@@ -24,6 +24,20 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MapColorScheme
+import com.google.android.gms.maps.model.Polygon
+import com.google.android.gms.maps.model.PolygonOptions
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
+
+data class CellData(
+    val cellId: String,
+    var visitCount: Int,
+    var lastMode: String,
+    val firstVisitedTimestamp: Long = System.currentTimeMillis()
+)
 
 class MapFragment : Fragment(), OnMapReadyCallback {
 
@@ -31,6 +45,10 @@ class MapFragment : Fragment(), OnMapReadyCallback {
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private lateinit var locationCallback: LocationCallback
     private var isFirstLocationFix = true
+
+    private val renderedPolygons = mutableMapOf<String, Polygon>()
+    private val visitedCells = mutableMapOf<String, CellData>()
+    private var lastCellId: String? = null
 
     private val locationPermissionRequest = registerForActivityResult(
         ActivityResultContracts.RequestMultiplePermissions()
@@ -70,7 +88,92 @@ class MapFragment : Fragment(), OnMapReadyCallback {
 
     override fun onMapReady(map: GoogleMap) {
         googleMap = map
+        googleMap.mapColorScheme = MapColorScheme.DARK
         checkAndRequestPermissions()
+
+        googleMap.setOnCameraIdleListener {
+            renderVisibleGrid()
+        }
+
+        // Tap any painted square to see its details
+        googleMap.setOnPolygonClickListener { polygon ->
+            val cellId = polygon.tag as? String ?: return@setOnPolygonClickListener
+            val data = visitedCells[cellId] ?: return@setOnPolygonClickListener
+
+            val dateStr = SimpleDateFormat("MMM d, yyyy 'at' h:mm a", Locale.US)
+                .format(Date(data.firstVisitedTimestamp))
+
+            // Just temporary, not the actual naming scheme.
+            val tierLabel = when {
+                data.visitCount == 1 -> "Newly Discovered (Tier 1)"
+                data.visitCount in 2..3 -> "Familiar Route (Tier 2)"
+                data.visitCount in 4..6 -> "Frequent Territory (Tier 3)"
+                else -> "Mastered Zone (Tier 4)"
+            }
+
+            MaterialAlertDialogBuilder(requireContext())
+                .setTitle("Zone $cellId")
+                .setMessage(
+                    "Status: $tierLabel\n" +
+                            "Total Visits: ${data.visitCount}\n" +
+                            "Last Mode: ${data.lastMode}\n" +
+                            "First Explored: $dateStr"
+                )
+                .setPositiveButton("Close", null)
+                .show()
+        }
+    }
+
+    private fun renderVisibleGrid() {
+        if (!::googleMap.isInitialized) return
+
+        val bounds = googleMap.projection.visibleRegion.latLngBounds
+
+
+        val iterator = renderedPolygons.iterator()
+        while (iterator.hasNext()) {
+            val entry = iterator.next()
+            val corners = GridHelper.getCellCorners(entry.key)
+            val isOnScreen = corners.any { bounds.contains(it) }
+            if (!isOnScreen || entry.key !in visitedCells) {
+                entry.value.remove()
+                iterator.remove()
+            }
+        }
+
+        // ONLY render squares that have been visited.
+        // This is where the points difference happens
+        for ((cellId, cellData) in visitedCells) {
+            val corners = GridHelper.getCellCorners(cellId)
+            val isOnScreen = corners.any { bounds.contains(it) }
+            if (!isOnScreen) continue
+
+            val existingPolygon = renderedPolygons[cellId]
+            if (existingPolygon != null) {
+                applyCoverageStyle(existingPolygon, cellData.visitCount)
+            } else {
+                val polygon = googleMap.addPolygon(
+                    PolygonOptions()
+                        .addAll(corners)
+                        .strokeWidth(0f) // Seamless borderless tiles
+                        .clickable(true)
+                )
+                polygon.tag = cellId
+                applyCoverageStyle(polygon, cellData.visitCount)
+                renderedPolygons[cellId] = polygon
+            }
+        }
+    }
+
+    private fun applyCoverageStyle(polygon: Polygon, visits: Int) {
+        polygon.fillColor = when {
+            visits == 1 -> 0x55B0BEC5.toInt()     // Soft Silver (1 visit)
+            visits in 2..3 -> 0x66CE93D8.toInt()  // Light Purple (2-3 visits)
+            visits in 4..6 -> 0x77AB47BC.toInt()  // Medium Purple (4-6 visits)
+            else -> 0x886A1B9A.toInt()            // Deep Purple (7+ visits)
+
+            // This is mainly for user insight.
+        }
     }
 
     private fun checkAndRequestPermissions() {
@@ -97,7 +200,6 @@ class MapFragment : Fragment(), OnMapReadyCallback {
     private fun enableLiveLocation() {
         if (!::googleMap.isInitialized) return
 
-        // Turns on the blue location puck and Google's built-in recenter button
         googleMap.isMyLocationEnabled = true
 
         val locationRequest = LocationRequest.Builder(Priority.PRIORITY_HIGH_ACCURACY, 3000L)
@@ -117,12 +219,27 @@ class MapFragment : Fragment(), OnMapReadyCallback {
                 val location = result.lastLocation ?: return
                 val currentLatLng = LatLng(location.latitude, location.longitude)
 
-                // Zoom into the user's position on the very first GPS fix
                 if (isFirstLocationFix) {
                     googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 16f))
                     isFirstLocationFix = false
                 }
 
+                val currentCellId = GridHelper.getCellId(location.latitude, location.longitude)
+                if (currentCellId != lastCellId) {
+                    lastCellId = currentCellId
+                    val speedMph = location.speed * 2.23694f
+                    val mode = if (speedMph > 5.0f) "DRIVE" else "WALK"
+
+                    val existing = visitedCells[currentCellId]
+                    if (existing != null) {
+                        existing.visitCount += 1
+                        existing.lastMode = mode
+                    } else {
+                        visitedCells[currentCellId] = CellData(currentCellId, visitCount = 1, lastMode = mode)
+                    }
+
+                    renderVisibleGrid()
+                }
             }
         }
     }
