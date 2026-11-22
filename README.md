@@ -169,61 +169,45 @@ List the issues you completed this sprint
 
 <img width="400" height="800" alt="Milestone2" src="https://github.com/user-attachments/assets/10337409-5ecc-40bb-bcab-79d2fc307d6a" />
 
+---
+
 ### User Stories
 
 #### Screen 1: World Map View
 
-* [x] Interactive Base Map Canvas with pan, pinch-to-zoom, and tilt gestures
-* [ ] Uber H3 Hexagonal Territory Mesh
-* [ ] Dim / translucent hexes for newly explored roads (visited 1–2 times)
-* [ ] Solid colored hexes for high-frequency daily commute corridors
-* [ ] Dotted / outlined hexes ("Ghost Locations") for unvisited streets bordering regular routes
-* [ ] Gold / highlighted hexes for unclaimed "High-Value" bonus zones
-
-
-* [ ] Pulsating blue vehicle location puck with directional heading cone
-* [ ] Color-coded polyline route trails distinguishing standard commute roads from newly discovered detours
+* [x] Interactive dark-mode Base Map Canvas with pan, pinch-to-zoom, and tilt gestures
+* [x] Uniform Square Territory Grid (~150m spatial cells via `GridHelper`) that remains invisible until explored
+* [x] Borderless, 4-tier progressive color tiles (`Polygon` overlays) that deepen in shade based on repeat visit frequency (1 visit, 2–3 visits, 4–6 visits, 7+ visits)
+* [x] Gold / highlighted tiles for unclaimed daily "High-Value" 3x bonus zones
+* [x] Live blue GPS location puck with automatic initial camera lock
+* [x] Tap-to-inspect tile dialog displaying Zone ID, familiarity tier, total visit count, last travel mode (`WALK`/`DRIVE`), and first explored timestamp
 * [ ] Floating action button to re-center camera on live GPS coordinates
-* [ ] Floating action button to toggle hexagonal mesh visibility on/off
+* [ ] Floating action button to toggle coverage grid visibility on/off
 
 #### Screen 2: Discovery Feed & Leaderboard
 
-* [ ] Top metric banner displaying Driver Level, weekly points counter, and current Leaderboard Rank
-* [ ] Local Leaderboard view ranking drivers by distance points, route-novelty bonuses, and high-value zone claims
-* [ ] Scrollable vertical feed with driving insight and challenge cards
-* [ ] High-Value Zone Card (mini-map preview, distance, bonus point payout)
-* [ ] Ghost Location Card (nearby unvisited road alert with distance and reward tag)
-* [ ] Routine Divergence Card (commute habit callouts, e.g., exits or roads passed without taking)
-* [ ] Territory Expansion Card (celebratory banner for newly unlocked roads and detour multipliers)
+* [ ] Horizontal carousel of Nearby High-Value Zones showing XP bonus payouts, distance, and a "Show on Map" action button
+* [ ] Local Explorers Leaderboard card ranking users by total XP, level, and rank standing
+* [ ] Privacy-safe Rival Stats dialog on leaderboard row tap (displays aggregated distance, zones unlocked, and bonus claims if public, while keeping GPS coordinates strictly private)
+* [ ] Scrollable vertical activity stream displaying recent territory discoveries, ghost zone alerts, and pedestrian streak insights
+* [ ] Wire "Show on Map" card action to center the Map tab on the selected zone's coordinates
+* [ ] Connect Leaderboard and Activity Feed cards to live Cloud Firestore queries
 
+#### Screen 3: Explorer Profile
 
-* [ ] Card action to highlight and navigate to the selected coordinate on the Map tab
+* [x] Header Level Card with Explorer Rank badge, level title, and animated Material 3 XP progress bar
+* [x] 2x2 Territory Stats Dashboard (Territory Known %, Zones Unlocked, Miles Logged, Bonus Zones Claimed)
+* [x] Account Privacy & Preferences card (Public Leaderboard Stats toggle and Preferred Mode selector)
+* [ ] Connect Profile counters and privacy toggle to authenticated Firebase user document (`users/{uid}`)
 
-#### Screen 3: Driver Profile
-
-* [ ] Header Level Card with Driver Rank badge, leaderboard standing, and visual points progress bar
-* [ ] 2x2 Territory Stats Dashboard
-* [ ] Road Network Known percentage
-* [ ] Hexes Unlocked counter
-* [ ] Miles Driven counter
-* [ ] High-Value Zones Claimed counter
-
-
-* [ ] Saved Places & Bookmarks list with custom labels, visit counts, notes, and edit/delete controls
-
-#### Modal Sheet: Location / Hex Detail View
-
-* [ ] Bottom sheet slide-up trigger from map pin or hex tile tap with dismiss drag handle
-* [ ] Reverse-geocoded street or neighborhood title and coordinate subtitle
-* [ ] Familiarity & zone status pill (New Road, Daily Commute, Ghost Location, or High-Value Zone)
-* [ ] Location stats row displaying total visit count, dwell time, and point value
-* [ ] Editable text field for saving custom notes and labels
-
-#### Persistent System Shell & Scoring Engine
+#### Persistent System Shell, Cloud Sync & Scoring Engine
 
 * [x] Fixed 3-tab Bottom Navigation Bar (Map, Feed, Profile)
-* [ ] Android status bar persistent foreground notification for active background drive tracking
-* [ ] Point scoring & multiplier logic (base distance points, off-commute detour bonuses, and high-value zone claims)
+* [ ] Point scoring & multiplier logic (`100 XP` new discovery, `15 XP` repeat visit with 1-hour anti-farming cooldown, `1.5x` pedestrian walk bonus, and `3.0x` daily special zone multiplier)
+* [ ] Firebase Authentication & Cloud Firestore integration for cross-device account persistence (`users/{uid}` and `visited_cells`)
+* [ ] Android status bar persistent foreground notification for continuous background exploration tracking
+
+---
 
 
 
