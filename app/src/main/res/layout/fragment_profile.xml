@@ -391,6 +391,17 @@
                     android:textColor="?attr/colorError"
                     app:strokeColor="?attr/colorError" />
 
+                <!-- Action Button: Logout -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/logout_btn"
+                    style="?attr/materialButtonOutlinedStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Logout"
+                    android:backgroundTint="#FF0000"
+                    android:textColor="?attr/colorError"
+                    app:strokeColor="?attr/colorError" />
+
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 

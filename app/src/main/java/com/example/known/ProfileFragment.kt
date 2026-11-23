@@ -1,18 +1,22 @@
 package com.example.known
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
+import androidx.credentials.ClearCredentialStateRequest
+import androidx.credentials.CredentialManager
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.button.MaterialButtonToggleGroup
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.materialswitch.MaterialSwitch
 import com.google.android.material.progressindicator.LinearProgressIndicator
+import kotlinx.coroutines.launch
 import java.util.Locale
 
 class ProfileFragment : Fragment() {
@@ -32,8 +36,9 @@ class ProfileFragment : Fragment() {
     private lateinit var toggleUnits: MaterialButtonToggleGroup
     private lateinit var btnClearMapData: MaterialButton
 
-    // sample numbers for now to show how it looks
-    private var totalMilesLogged = 312.4
+    private lateinit var logoutBtn: MaterialButton
+
+    private var totalMilesLogged = 0.0
     private var useMiles = true
 
     override fun onCreateView(
@@ -49,6 +54,7 @@ class ProfileFragment : Fragment() {
 
         bindViews(view)
         loadSavedSettings()
+        loadUserProfile()
         setupListeners()
     }
 
@@ -67,6 +73,7 @@ class ProfileFragment : Fragment() {
         switchBackgroundTracking = view.findViewById(R.id.switch_background_tracking)
         toggleUnits = view.findViewById(R.id.toggle_units)
         btnClearMapData = view.findViewById(R.id.btn_clear_map_data)
+        logoutBtn = view.findViewById(R.id.logout_btn)
     }
 
     private fun loadSavedSettings() {
@@ -79,13 +86,35 @@ class ProfileFragment : Fragment() {
         refreshDistanceDisplay()
     }
 
+    private fun loadUserProfile() {
+        // Immediate fallback so placeholder text never appears
+        tvUsername.text = FirebaseRepository.getCurrentUser()?.displayName ?: "Explorer"
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            val profile = FirebaseRepository.getCurrentUserProfile()
+            if (profile != null) {
+                tvUsername.text = profile.username
+                switchPublicStats.isChecked = profile.isPublicStats
+                updateStats(
+                    xp = profile.totalXp.toInt(),
+                    cellsUnlocked = profile.zonesUnlocked.toInt(),
+                    miles = profile.milesLogged,
+                    bonusZones = profile.bonusZonesClaimed.toInt()
+                )
+            }
+        }
+    }
+
     private fun setupListeners() {
         val prefs = requireContext().getSharedPreferences("known_prefs", Context.MODE_PRIVATE)
 
+        switchPublicStats.setOnCheckedChangeListener { _, isChecked ->
+            prefs.edit().putBoolean("share_public_stats", isChecked).apply()
+            FirebaseRepository.updatePublicStatsPreference(isChecked)
+        }
 
         switchBackgroundTracking.setOnCheckedChangeListener { _, isChecked ->
             prefs.edit().putBoolean("background_tracking", isChecked).apply()
-            // TODO: Start or stop your foreground location tracking service
         }
 
         toggleUnits.addOnButtonCheckedListener { _, checkedId, isChecked ->
@@ -96,14 +125,46 @@ class ProfileFragment : Fragment() {
             }
         }
 
+        // Clear your existing map data. You'll be asked twice just in case.
         btnClearMapData.setOnClickListener {
             MaterialAlertDialogBuilder(requireContext())
                 .setTitle("Reset Local Map History?")
                 .setMessage("This will clear your visited grid squares and local route trails on this device.")
                 .setNegativeButton("Cancel", null)
                 .setPositiveButton("Reset") { _, _ ->
-                    // TODO: Clear Room database tables
                     updateStats(xp = 0, cellsUnlocked = 0, miles = 0.0, bonusZones = 0)
+                }
+                .show()
+        }
+
+        // Logout button that takes you back to the sign in screen
+        logoutBtn.setOnClickListener {
+            MaterialAlertDialogBuilder(requireContext())
+                .setTitle("Logout?")
+                .setMessage("Are you sure you want to log out?")
+                .setNegativeButton("Cancel", null)
+                .setPositiveButton("Yes") { _, _ ->
+                    // 1. Sign out of Firebase Auth
+                    FirebaseRepository.signOut()
+
+                    // 2. Reset local UI counters
+                    updateStats(xp = 0, cellsUnlocked = 0, miles = 0.0, bonusZones = 0)
+
+                    // 3. Clear Credential Manager state & navigate back to LoginActivity
+                    viewLifecycleOwner.lifecycleScope.launch {
+                        try {
+                            val credentialManager = CredentialManager.create(requireContext())
+                            credentialManager.clearCredentialState(ClearCredentialStateRequest())
+                        } catch (_: Exception) {
+                            // Safe to ignore if no active credential session exists
+                        }
+
+                        val intent = Intent(requireContext(), LoginActivity::class.java).apply {
+                            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                        }
+                        startActivity(intent)
+                        requireActivity().finish()
+                    }
                 }
                 .show()
         }
@@ -117,7 +178,6 @@ class ProfileFragment : Fragment() {
         }
     }
 
-    // call from room when thats created
     fun updateStats(xp: Int, cellsUnlocked: Int, miles: Double, bonusZones: Int) {
         val level = (xp / 1000) + 1
         val currentLevelXp = xp % 1000

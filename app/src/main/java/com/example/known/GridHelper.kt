@@ -14,6 +14,11 @@ object GridHelper {
         val lngIdx = floor(lng / CELL_SIZE).toLong()
         return "${latIdx}_${lngIdx}"
     }
+    data class VisitReward(
+        val xpEarned: Int,
+        val isNewDiscovery: Boolean,
+        val isSpecialBonus: Boolean
+    )
 
     fun getCellCorners(cellId: String): List<LatLng> {
         val parts = cellId.split("_")
@@ -31,6 +36,14 @@ object GridHelper {
             LatLng(north, east), // Top-Right
             LatLng(south, east)  // Bottom-Right
         )
+    }
+
+    // For navigating to a square by getting its coordinates.
+    fun getCellCenter(cellId: String): LatLng {
+        val corners = getCellCorners(cellId)
+        val avgLat = corners.map { it.latitude }.average()
+        val avgLng = corners.map { it.longitude }.average()
+        return LatLng(avgLat, avgLng)
     }
 
     fun getVisibleCellIds(bounds: LatLngBounds): List<String> {
