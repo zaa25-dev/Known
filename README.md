@@ -24,7 +24,6 @@ App Evaluation
 Category: Personal Analytics / Mapping / Lifestyle / Gamification
 
 Mobile: Uniquely mobile experience utilizing continuous GPS Location tracking for route logging and distance scoring, Maps for rendering explored road networks and high-value territory zones, Accelerometer & Gyroscope sensors for driving detection and trip classification, and Compass (Magnetometer) data for directional travel analysis.
-Story: People get stuck commuting on autopilot, ignoring 90% of their own city. Known transforms everyday movement into a point-based exploration game—highlighting nearby unvisited roads and walkways 
 
 Story: Most drivers commute on autopilot, taking the exact same roads every day while overlooking the rest of their city. Known turns everyday driving into an exploration game—rewarding drivers for detouring off their usual routes, uncovering unvisited areas, and competing for high-value territory on a local leaderboard.
 
