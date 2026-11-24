@@ -206,6 +206,22 @@ List the issues you completed this sprint
 * [ ] Firebase Authentication & Cloud Firestore integration for cross-device account persistence (`users/{uid}` and `visited_cells`)
 * [ ] Android status bar persistent foreground notification for continuous background exploration tracking
 
+Milestone 3 - Build Sprint 2 (Unit 9)
+
+GitHub Project board:
+
+
+Completed user stories
+List the completed user stories from this unit
+
+List any pending user stories / any user stories you decided to cut from the original requirements
+
+[Add video/gif of your current application that shows build progress] 
+
+App Demo Video
+
+Embed the YouTube/Vimeo link of your Completed Demo Day prep video
+
 ---
 
 
