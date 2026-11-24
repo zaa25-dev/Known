@@ -180,41 +180,56 @@ List the issues you completed this sprint
 * [x] Gold / highlighted tiles for unclaimed daily "High-Value" 3x bonus zones
 * [x] Live blue GPS location puck with automatic initial camera lock
 * [x] Tap-to-inspect tile dialog displaying Zone ID, familiarity tier, total visit count, last travel mode (`WALK`/`DRIVE`), and first explored timestamp
-* [ ] Floating action button to re-center camera on live GPS coordinates
-* [ ] Floating action button to toggle coverage grid visibility on/off
+* [x] Floating action button to re-center camera on live GPS coordinates
 
 #### Screen 2: Discovery Feed & Leaderboard
 
 * [ ] Horizontal carousel of Nearby High-Value Zones showing XP bonus payouts, distance, and a "Show on Map" action button
-* [ ] Local Explorers Leaderboard card ranking users by total XP, level, and rank standing
+* [x] Local Explorers Leaderboard card ranking users by total XP, level, and rank standing
 * [ ] Privacy-safe Rival Stats dialog on leaderboard row tap (displays aggregated distance, zones unlocked, and bonus claims if public, while keeping GPS coordinates strictly private)
 * [ ] Scrollable vertical activity stream displaying recent territory discoveries, ghost zone alerts, and pedestrian streak insights
 * [ ] Wire "Show on Map" card action to center the Map tab on the selected zone's coordinates
-* [ ] Connect Leaderboard and Activity Feed cards to live Cloud Firestore queries
+* [x] Connect Leaderboard and Activity Feed cards to live Cloud Firestore queries
 
 #### Screen 3: Explorer Profile
 
 * [x] Header Level Card with Explorer Rank badge, level title, and animated Material 3 XP progress bar
 * [x] 2x2 Territory Stats Dashboard (Territory Known %, Zones Unlocked, Miles Logged, Bonus Zones Claimed)
 * [x] Account Privacy & Preferences card (Public Leaderboard Stats toggle and Preferred Mode selector)
-* [ ] Connect Profile counters and privacy toggle to authenticated Firebase user document (`users/{uid}`)
+* [x] Connect Profile counters and privacy toggle to authenticated Firebase user document (`users/{uid}`)
 
 #### Persistent System Shell, Cloud Sync & Scoring Engine
 
 * [x] Fixed 3-tab Bottom Navigation Bar (Map, Feed, Profile)
-* [ ] Point scoring & multiplier logic (`100 XP` new discovery, `15 XP` repeat visit with 1-hour anti-farming cooldown, `1.5x` pedestrian walk bonus, and `3.0x` daily special zone multiplier)
-* [ ] Firebase Authentication & Cloud Firestore integration for cross-device account persistence (`users/{uid}` and `visited_cells`)
+* [x] Point scoring & multiplier logic (`100 XP` new discovery, `25 XP` repeat visit with 1-hour anti-farming cooldown
+* [x] Firebase Authentication & Cloud Firestore integration for cross-device account persistence (`users/{uid}` and `visited_cells`)
 * [ ] Android status bar persistent foreground notification for continuous background exploration tracking
 
 Milestone 3 - Build Sprint 2 (Unit 9)
 
 GitHub Project board:
 
+<img width="1908" height="962" alt="image" src="https://github.com/user-attachments/assets/6635aa6b-5dba-46e3-a5f1-e83dee24a12a" />
+
+
 
 Completed user stories
 List the completed user stories from this unit
 
+- This unit was about making sure the basic functions of the app work.
+- Firebase was created to hold user accounts and data for their use and the leaderboard.
+- Sign in With Google used for accounts. Logout button also added.
+- Map tiles generated as the user moves.
+- Golden "bonus" tiles appear randomly on the map to be claimed for more XP.
+- Leaderboard created. Currently have myself and a fake user inside to demonstrate that it works.
+- Tapping on tiles shows data such as amount of times visited and changes color based on this amount. 
+
 List any pending user stories / any user stories you decided to cut from the original requirements
+
+- I originally wanted to separate walking and driving to give those separate scores but felt it would not make sense.
+- Tiles need to show the amount of points that specific tile has awarded as you can still gain points from tiles you already visited.
+- Need to add a custom username function as not everyone wants to use their Google account name.
+- Need to add when you tap another user on the leaderboard, you can view their stats compared to yours. Privacy first, of course. 
 
 [Add video/gif of your current application that shows build progress] 
 
