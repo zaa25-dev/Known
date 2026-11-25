@@ -254,6 +254,8 @@ App Demo Video
 
 Embed the YouTube/Vimeo link of your Completed Demo Day prep video
 
+https://youtu.be/Vh_KH1HFChg
+
 ---
 
 
