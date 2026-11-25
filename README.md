@@ -235,7 +235,7 @@ List any pending user stories / any user stories you decided to cut from the ori
 
 Login and Feed Pages
 
-<img width="540" height="1200" alt="Login and Feed" src="https://github.com/user-attachments/assets/d07eef44-774d-4f82-a0ad-50681a1a5034" />
+<img width="400" height="800" alt="Login and Feed" src="https://github.com/user-attachments/assets/d07eef44-774d-4f82-a0ad-50681a1a5034" />
 
 Exploring high value zones on the map and navigating to them. 
 
@@ -245,7 +245,7 @@ Had to put this one on imgur because I could not get the file size down low enou
 
 Profile page and Logging Out
 
-<img width="540" height="1200" alt="Profile and Logout" src="https://github.com/user-attachments/assets/5a0647be-9a7b-4bc2-bb88-9ce47f81f8a9" />
+<img width="400" height="800" alt="Profile and Logout" src="https://github.com/user-attachments/assets/5a0647be-9a7b-4bc2-bb88-9ce47f81f8a9" />
 
 
 
