@@ -135,7 +135,7 @@ This creates an ongoing feedback loop where drivers check back after trips to se
 
 Not a very good drawing. It's not one of my skills. 
 
-<img width="600" height="1200" alt="Scan_20261103_222723" src="https://github.com/user-attachments/assets/4a1c36d5-6cff-443e-9178-eaabf71b50a6" />
+<img width="400" height="800" alt="Scan_20261103_222723" src="https://github.com/user-attachments/assets/4a1c36d5-6cff-443e-9178-eaabf71b50a6" />
 
 
 ```markdown
