@@ -233,6 +233,23 @@ List any pending user stories / any user stories you decided to cut from the ori
 
 [Add video/gif of your current application that shows build progress] 
 
+Login and Feed Pages
+
+<img width="540" height="1200" alt="Login and Feed" src="https://github.com/user-attachments/assets/d07eef44-774d-4f82-a0ad-50681a1a5034" />
+
+Exploring high value zones on the map and navigating to them. 
+
+https://imgur.com/a/explore-map-navigate-tChgbSW
+
+Had to put this one on imgur because I could not get the file size down low enough. 
+
+Profile page and Logging Out
+
+<img width="540" height="1200" alt="Profile and Logout" src="https://github.com/user-attachments/assets/5a0647be-9a7b-4bc2-bb88-9ce47f81f8a9" />
+
+
+
+
 App Demo Video
 
 Embed the YouTube/Vimeo link of your Completed Demo Day prep video
